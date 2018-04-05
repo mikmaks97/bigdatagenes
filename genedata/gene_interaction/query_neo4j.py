@@ -1,6 +1,5 @@
 from py2neo import Node, Relationship, authenticate, Graph
-
-from config import config
+from ..config import config
 
 host_port = '{}:{}'.format(config.get_setting('neo4j', 'host'),
                            config.get_setting('neo4j', 'port'))

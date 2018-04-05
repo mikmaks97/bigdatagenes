@@ -2,7 +2,7 @@ from datetime import datetime
 
 from py2neo import Node, Relationship, authenticate, Graph
 
-from config import config
+from ..config import config
 
 start = datetime.now()
 
