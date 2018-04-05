@@ -9,4 +9,4 @@ Databases:
 - PostgreSQL
 - Dynamo
 
-[Installation instructions]()
+[Installation instructions](https://github.com/mikmaks97/bigdatagenes/blob/master/docs/installation.md)
