@@ -10,19 +10,21 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
-import os, json
+import os
+from configparser import ConfigParser
+
 from unipath import Path
 from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = Path(__file__).ancestor(3)
 PROJECT_ROOT = Path(__file__).ancestor(4)
 
-with open(os.path.join(PROJECT_ROOT, 'secrets.json')) as f:
-    secrets = json.loads(f.read())
+config = ConfigParser()
+config.read(os.path.join(PROJECT_ROOT, 'config.ini'))
 
-def get_secret(setting, secrets=secrets):
+def get_secret(section, setting, config=config):
     try:
-        return secrets[setting]
+        return config[section][setting]
     except KeyError:
         error_msg = "Set the {} environment variable".format(setting)
         raise ImproperlyConfigured(error_msg)
@@ -32,7 +34,7 @@ def get_secret(setting, secrets=secrets):
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_secret("django_key")
+SECRET_KEY = get_secret("django","django_key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
