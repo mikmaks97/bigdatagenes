@@ -11,30 +11,17 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-from configparser import ConfigParser
 
 from unipath import Path
-from django.core.exceptions import ImproperlyConfigured
+
+from .. import config
 
 BASE_DIR = Path(__file__).ancestor(3)
-PROJECT_ROOT = Path(__file__).ancestor(4)
-
-config = ConfigParser()
-config.read(os.path.join(PROJECT_ROOT, 'config.ini'))
-
-def get_secret(section, setting, config=config):
-    try:
-        return config[section][setting]
-    except KeyError:
-        error_msg = "Set the {} environment variable".format(setting)
-        raise ImproperlyConfigured(error_msg)
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_secret("django","django_key")
+SECRET_KEY = config.get_setting("django","django_key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
