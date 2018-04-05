@@ -1,17 +1,10 @@
 # Tips for development
 
-To access settings in config.ini import config module (config/config.py) relative to
-working module:<br>
+To access the settings in *config.ini* run scripts from the project root:<br>
+`python3 -m genedata.gene_interaction.gene_interaction.query_neo4j`<br>
+This will run *neo4j.py* as a module, and you can then access *genedata/config/config.py*<br>
+with `from genedata.config import config` inside *neo4j.py*.
 
-<t>`from ..config import config`<br>
+Do this for all your scripts too. The absolute imports prevent lots of headaches.
 
-will import config module from config package, which is located in parent directory of called script.
-
-For relative imports to work with parent directories run script from project root:<br>
-`python3 -m genedata.<your_folder>.<your_module>`
-
-instead of `python3 <your_module>.py`
-
-Take note of the lack of .py when running as a module (aargh..)
-
-**Make sure to create ___init__.py_ in any folder that you want to be a package**
+**Make sure to create ___init__.py_ in every folder that you want to be a package** (basically every folder)
