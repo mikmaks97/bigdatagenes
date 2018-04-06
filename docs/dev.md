@@ -14,4 +14,13 @@ so if the path of the script is proj_root/folder/folder/file the new path become
 proj_root/config. That is then appended to the system PATH variable. You should<br>
 alter the number of *..* depending on how deep your file is.<br><Br>
 
-**Make sure to create ___init__.py_ in every folder that you want to be a package** (basically every folder)
+**Make sure to create ___init__.py_ in every folder that you want to be a package** (basically every folder)<br>
+Also, follow the project structure for your parts like I did for the *gene_interaction* folder:
+- The root *gene_interaction* folder has *setup.py* in it (which you can just copy an change a bit)
+- *__main__.py* is in the inner *gene_interaction* folder and is the main CLI file.
+- You can run `pip install -e .` while in the outer folder to install your package!
+I added a section in the Makefile, which installs my package and copies it over to a new CLI folder.<br>
+You can add your package installation lines to it.<br>
+I really hope that my files help you at least a bit. But, damn, let's focus on making the DBs.
+
+
