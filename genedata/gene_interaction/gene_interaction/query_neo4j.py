@@ -1,5 +1,8 @@
 from py2neo import Node, Relationship, authenticate, Graph
-from genedata.config import config
+
+import os, sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', '..', 'config')))
+import config
 
 def query(n_id, order):
     if order <= 0: return None

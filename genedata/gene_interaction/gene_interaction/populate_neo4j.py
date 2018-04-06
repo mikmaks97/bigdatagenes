@@ -1,6 +1,8 @@
 from py2neo import Node, Relationship, authenticate, Graph
 
-from genedata.config import config
+import os, sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', '..', 'config')))
+import config
 
 def populate():
     host_port = '{}:{}'.format(config.get_setting('neo4j', 'host'),
@@ -12,7 +14,7 @@ def populate():
     try:
         graph.schema.create_uniqueness_constraint('Gene', 'id')
     except Exception as e:
-        print(e)
+        print e
 
     create_nodes = '''
     USING PERIODIC COMMIT

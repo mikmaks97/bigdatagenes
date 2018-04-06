@@ -1,5 +1,5 @@
 import os
-from configparser import ConfigParser
+from ConfigParser import ConfigParser
 
 from unipath import Path
 
@@ -15,7 +15,7 @@ config.read(path)
 
 def get_setting(section, setting, config=config):
     try:
-        return config[section][setting]
+        return config.get(section, setting)
     except KeyError:
         error_msg = "Set {} in the {} section of {}".format(setting, section, path)
         raise NotConfigured(error_msg)
