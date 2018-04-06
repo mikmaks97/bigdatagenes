@@ -12,3 +12,4 @@ Databases:
 - Dynamo
 
 [Installation instructions](https://github.com/mikmaks97/bigdatagenes/blob/master/docs/installation.md)
+[Dev tips](https://github.com/mikmaks97/bigdatagenes/blob/master/docs/dev.md)

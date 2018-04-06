@@ -1,10 +1,17 @@
 # Tips for development
 
-To access the settings in *config.ini* run scripts from the project root:<br>
-`python3 -m genedata.gene_interaction.gene_interaction.query_neo4j`<br>
-This will run *neo4j.py* as a module, and you can then access *genedata/config/config.py*<br>
-with `from genedata.config import config` inside *neo4j.py*.
+To access the settings in *config.ini* you use the `get_setting` in *config/config.py*.<br>
+To access this module in any script of the project just use these three beautiful lines:<br>
+```python
+import os, sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..', 'config')))
+import config
+```
+Then you can just use `config.get_setting`.<br><br>
 
-Do this for all your scripts too. The absolute imports prevent lots of headaches.
+That disgusting line of code just says to go two directories up and then append /config,<br>
+so if the path of the script is proj_root/folder/folder/file the new path becomes<br>
+proj_root/config. That is then appended to the system PATH variable. You should<br>
+alter the number of *..* depending on how deep your file is.<br><Br>
 
 **Make sure to create ___init__.py_ in every folder that you want to be a package** (basically every folder)
