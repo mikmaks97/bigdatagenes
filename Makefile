@@ -9,6 +9,5 @@ venv/bin/activate: requirements.txt
 cli:
 	pip install -e genedata/gene_interaction/; \
 	mkdir genedata/cli; \
-	cp -R genedata/gene_interaction/gene_interaction_analysis.egg-info genedata/cli; \
-	rm -rf genedata/gene_interaction/gene_interaction_analysis.egg-info
+	ln -s genedata/gene_interaction/gene_interaction_analysis.egg-info genedata/cli; \
 

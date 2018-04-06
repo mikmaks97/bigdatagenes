@@ -15,11 +15,11 @@ def query(n_id, order):
 
 
     query_n_order = '''
-    MATCH (g:Gene {{id: {}}})-[:INTERACTS*{}]->(n_order_genes) WHERE NOT((g)-[:INTERACTS]->(n_order_genes))
-    RETURN g.id, n_order_genes.id
+    MATCH (g:Gene {{id: {}}})-[:INTERACTS*{}]->(n_order_gene) WHERE NOT((g)-[:INTERACTS]->(n_order_gene))
+    RETURN g.id, n_order_gene.id
     '''.format(n_id, order) if order > 1 else '''
-    MATCH (g:Gene {{id: {}}})-[:INTERACTS]->(n_order_genes)
-    RETURN g.id, n_order_genes.id
+    MATCH (g:Gene {{id: {}}})-[:INTERACTS]->(n_order_gene)
+    RETURN g.id, n_order_gene.id
     '''.format(n_id)
     return graph.data(query_n_order)
 

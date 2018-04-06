@@ -1,5 +1,6 @@
 import argparse
 import sys
+import pprint
 
 import populate_neo4j, query_neo4j
 
@@ -20,7 +21,12 @@ def main():
     if args.operation == 'populate':
         populate_neo4j.populate()
     elif args.operation == 'query':
-        print query_neo4j.query(args.target, args.order)
+        result = query_neo4j.query(args.target, args.order)
+        msg = '{}-order interacting genes with gene {}:'.format(args.order, args.target)
+        genes = []
+        for d in result:
+            genes.append(d['n_order_gene.id'])
+        print msg, ', '.join(map(str,genes))
 
 
 if __name__ == '__main__':
