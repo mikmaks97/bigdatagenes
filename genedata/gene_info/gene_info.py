@@ -6,7 +6,7 @@ ET.register_namespace('', "http://uniprot.org/uniprot")
 def connect():
   conn = None
   try:
-    conn = psycopg2.connect(host="localhost", database="gene_info", user="bhernandev", password="mangocreator")
+    conn = psycopg2.connect(host="localhost", database="gene_info", user="bhernandev", password="password123")
     cur = conn.cursor()
     drop_tables(cur, conn)
     create_tables(cur, conn)
