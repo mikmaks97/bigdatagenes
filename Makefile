@@ -12,4 +12,5 @@ cli:
 	ln -s genedata/gene_interaction/gene_interaction.egg-info genedata/cli; \
 	pip install -e genedata/patient_info/; \
 	ln -s genedata/patient_info/patient_info.egg-info genedata/cli; \
-
+  pip install -e genedata/gene_info/; \
+  ln -s genedata/gene_info/gene_info.egg-info genedata/cli; \

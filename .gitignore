@@ -3,3 +3,5 @@
 db.sqlite3
 .DS_STORE
 *.egg-info
+proj_venv/
+*.swp
