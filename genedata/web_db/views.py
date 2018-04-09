@@ -26,7 +26,11 @@ def index(request):
             return render(request, 'web_db/gene_interaction.html', context)
         elif 'gene-statistics' in request.POST:
             gene = request.POST.get('gene')
-            print(gene)
+            #query_result = gene_stat.query(gene)
+            query_result = [{"mean": 2, "std": 3}, {"mean": 5, "std": 7}, {"mean": 11, "std": 13}, {"mean": 17, "std": 19}, {"mean": 23, "std": 27}, {"mean": 31, "std": 37}] 
+            context["query"] = gene
+            context["result"] = query_result
+            return render(request, 'web_db/gene_stats.html', context)
         elif 'gene-information' in request.POST:
             gene = request.POST.get('gene')
             query_result = gene_info.query_gene(gene)

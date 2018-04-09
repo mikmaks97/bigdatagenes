@@ -1,0 +1,33 @@
+{% load static %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'web_db/pure-min.css' %}">
+</head>
+<body>
+    <legend><h1>Gene {{ query }} Expression Value Statistics</h1></legend>
+    <hr>
+    <h2>NCI - No Cognitive Impairment</h2>
+    <p>Mean: {{result.0.mean}}</p>
+    <p>Standard Deviation: {{result.0.std}}</p>
+    <hr>
+    <h2>MCI - Mild Cognitive Impairment + No Other Cause of CI</h2>
+    <p>Mean: {{result.1.mean}}</p>
+    <p>Standard Deviation: {{result.1.std}}</p>   
+    <hr>
+    <h2>MCI - No Cognitive Impairment + Another Cause of CI</h2>
+    <p>Mean: {{result.2.mean}}</p>
+    <p>Standard Deviation: {{result.2.std}}</p>
+    <hr>
+    <h2>AD - Alzheimer's Disease + No Other Cause of CI</h2>
+    <p>Mean: {{result.3.mean}}</p>
+    <p>Standard Deviation: {{result.3.std}}</p>
+    <hr>
+    <h2>AD - Alzheimer's Disease + Another Cause of CI</h2>
+    <p>Mean: {{result.4.mean}}</p>
+    <p>Standard Deviation: {{result.4.std}}</p>
+    <hr>
+    <h2>Other Dementia</h2>
+    <p>Mean: {{result.5.mean}}</p>
+    <p>Standard Deviation: {{result.5.std}}</p>
+    <hr>
+</body>
