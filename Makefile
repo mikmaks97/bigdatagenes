@@ -8,11 +8,11 @@ venv/bin/activate: requirements.txt
 
 cli:
 	pip install -e genedata/gene_interaction/; \
-	mkdir genedata/cli; \
-	ln -s genedata/gene_interaction/gene_interaction.egg-info genedata/cli; \
+	mkdir cli; \
+	ln -s genedata/gene_interaction/gene_interaction.egg-info cli; \
 	pip install -e genedata/patient_info/; \
-	ln -s genedata/patient_info/patient_info.egg-info genedata/cli; \
+	ln -s genedata/patient_info/patient_info.egg-info cli; \
 	pip install -e genedata/gene_info/; \
-	ln -s genedata/gene_info/gene_info.egg-info genedata/cli; \
+	ln -s genedata/gene_info/gene_info.egg-info cli; \
 	pip install -e genedata/gene_stats/; \
-	ln -s genedata/gene_stats/gene_stats.egg-info genedata/cli; \
+	ln -s genedata/gene_stats/gene_stats.egg-info cli; \
