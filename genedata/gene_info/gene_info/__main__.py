@@ -28,7 +28,6 @@ def main():
             print result
         else:
             for row in result:
-                print row
                 xml = mini_dom.parseString(row['uniprot_xml'])
                 pretty_xml = xml.toprettyxml(indent="  ")
                 print 'Info for gene {}:'.format(row['entrez_id'])

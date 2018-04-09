@@ -1,4 +1,6 @@
-#Installation instructions
+#Installation instructions<br>
+
+Dependencies: Python 2.7, pip, virtualenv<br>
 
 1. `git clone https://github.com/mikmaks97/bigdatagenes`
 2. `make init` in project root (make sure path to project does not contain spaces!)
