@@ -7,6 +7,6 @@
 4. Copy data to *data/* directory in project repo or in the case of Neo4J import data to graph folder
 5. Change default settings for databases in *config.ini*
 6. `source proj_venv/bin/activate` in repo root
-7. `python manage.py runserver` and go to (http://localhost:8000) inside *genedata* folder for web interface
+7. `chmod +x run_web.sh` and `./run_web.sh` and go to http://localhost:8000 for web interface
 8. `make cli` and go to *genedata/cli* for CLIs
 
