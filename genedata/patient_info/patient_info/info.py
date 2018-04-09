@@ -2,6 +2,13 @@ import csv, json, decimal
 import boto3
 from botocore.exceptions import ClientError
 
+import os, sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', '..', 'config')))
+try:
+    from config import config
+except:
+    import config
+
 
 class ConnectionError(Exception):
     pass
@@ -20,7 +27,7 @@ class DecimalEncoder(json.JSONEncoder):
 
 def connect():
     dynamodb = boto3.resource('dynamodb', region_name='us-west-2',
-                              endpoint_url="http://localhost:6464",
+                              endpoint_url="http://localhost:{}".format(config.get_setting('dynamo', 'port')),
                               aws_access_key_id='anything',
                               aws_secret_access_key='anything')
 

@@ -6,10 +6,15 @@ from botocore.exceptions import ClientError
 from cassandra.cluster import Cluster
 from cassandra.query import PreparedStatement, BatchStatement
 
-from datetime import datetime
+import os, sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', '..', 'config')))
+try:
+    from config import config
+except:
+    import config
 
 def connect():
-    cluster = Cluster()
+    cluster = Cluster(port=config.get_setting('cassandra','port'))
     session = cluster.connect()
     result = session.execute('SELECT cluster_name, listen_address FROM system.local;')
     session.execute("CREATE KEYSPACE IF NOT EXISTS genes WITH replication = {'class':'SimpleStrategy', 'replication_factor':1};")

@@ -19,7 +19,7 @@ def main():
         raise ValueError('target must be specified for query operation')
 
     if args.operation == 'populate':
-        info.delete_tables()
+        info.drop_tables()
         info.create_tables()
         info.insert_data()
     elif args.operation == 'query':
@@ -28,13 +28,14 @@ def main():
             print result
         else:
             for row in result:
-                xml = mini_dom.parseString(row[4])
+                print row
+                xml = mini_dom.parseString(row['uniprot_xml'])
                 pretty_xml = xml.toprettyxml(indent="  ")
-                print 'Info for gene {}:'.format(row[3])
-                print '  entrez id: {}'.format(row[0])
-                print '  gene symbol: {}'.format(row[1])
-                print '  gene name: {}'.format(row[2])
-                print '  uniprot id: {}'.format(row[3])
+                print 'Info for gene {}:'.format(row['entrez_id'])
+                print '  entrez id: {}'.format(row['entrez_id'])
+                print '  gene symbol: {}'.format(row['gene_symbol'])
+                print '  gene name: {}'.format(row['gene_name'])
+                print '  uniprot id: {}'.format(row['uniprot_id'])
                 print '  uniprot information: {}'.format(pretty_xml)
 
 if __name__ == '__main__':

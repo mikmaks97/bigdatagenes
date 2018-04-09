@@ -9,13 +9,13 @@ class NotConfigured(Exception):
 
 
 PROJECT_ROOT = Path(__file__).ancestor(3)
-config = ConfigParser()
+conf = ConfigParser()
 path = os.path.join(PROJECT_ROOT, 'config.ini')
-config.read(path)
+conf.read(path)
 
-def get_setting(section, setting, config=config):
+def get_setting(section, setting, config=conf):
     try:
-        return config.get(section, setting)
+        return conf.get(section, setting)
     except KeyError:
         error_msg = "Set {} in the {} section of {}".format(setting, section, path)
         raise NotConfigured(error_msg)

@@ -1,9 +1,13 @@
 {% load static %}
 
 <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900">
     <link rel="stylesheet" type="text/css" href="{% static 'web_db/pure-min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'web_db/base.css' %}">
 </head>
 <body>
+    <div id="wrapper">
+    <center><h1>Genomics Data (AD)</h1></center>
     <form class="pure-form" action="/" method="post">{% csrf_token %}
         <fieldset>
           <legend>Gene Interaction</legend>
@@ -33,4 +37,6 @@
             <button type="submit" class="pure-button pure-button-primary" name="patient-information" value="OK">Submit</button>
         </fieldset>
     </form>
+    </div>
+    <center><footer>&copy; 2Bears Co</footer></center>
 </body>

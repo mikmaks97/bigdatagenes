@@ -2,7 +2,10 @@ from py2neo import Node, Relationship, authenticate, Graph
 
 import os, sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', '..', 'config')))
-import config
+try:
+    from config import config
+except:
+    import config
 
 def populate():
     host_port = '{}:{}'.format(config.get_setting('neo4j', 'host'),

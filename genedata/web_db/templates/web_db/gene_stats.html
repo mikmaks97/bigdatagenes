@@ -2,32 +2,32 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'web_db/pure-min.css' %}">
-</head>
+    <link rel="stylesheet" type="text/css" href="{% static 'web_db/base.css' %}"
 <body>
-    <legend><h1>Gene {{ query }} Expression Value Statistics</h1></legend>
+    <legend><h1>Gene {{ query }} Expression Value Stats</h1></legend>
     <hr>
-    <h2>NCI - No Cognitive Impairment</h2>
-    <p>Mean: {{result.0.mean}}</p>
-    <p>Standard Deviation: {{result.0.std}}</p>
+    <h2><b>NCI - No Cognitive Impairment</b></h2>
+    <p>Mean: {{result.0.0|floatformat:2}}</p>
+    <p>Standard Deviation: {{result.0.1|floatformat:2}}</p>
     <hr>
-    <h2>MCI - Mild Cognitive Impairment + No Other Cause of CI</h2>
-    <p>Mean: {{result.1.mean}}</p>
-    <p>Standard Deviation: {{result.1.std}}</p>   
+    <h2><b>MCI - Mild Cognitive Impairment + No Other Cause of CI</b></h2>
+    <p>Mean: {{result.1.0|floatformat:2}}</p>
+    <p>Standard Deviation: {{result.1.1|floatformat:2}}</p>
     <hr>
-    <h2>MCI - No Cognitive Impairment + Another Cause of CI</h2>
-    <p>Mean: {{result.2.mean}}</p>
-    <p>Standard Deviation: {{result.2.std}}</p>
+    <h2><b>MCI - No Cognitive Impairment + Another Cause of CI</b></h2>
+    <p>Mean: {{result.2.0|floatformat:2}}</p>
+    <p>Standard Deviation: {{result.2.1|floatformat:2}}</p>
     <hr>
-    <h2>AD - Alzheimer's Disease + No Other Cause of CI</h2>
-    <p>Mean: {{result.3.mean}}</p>
-    <p>Standard Deviation: {{result.3.std}}</p>
+    <h2><b>AD - Alzheimer's Disease + No Other Cause of CI</b></h2>
+    <p>Mean: {{result.3.0|floatformat:2}}</p>
+    <p>Standard Deviation: {{result.3.1|floatformat:2}}</p>
     <hr>
-    <h2>AD - Alzheimer's Disease + Another Cause of CI</h2>
-    <p>Mean: {{result.4.mean}}</p>
-    <p>Standard Deviation: {{result.4.std}}</p>
+    <h2><b>AD - Alzheimer's Disease + Another Cause of CI</b></h2>
+    <p>Mean: {{result.4.0|floatformat:2}}</p>
+    <p>Standard Deviation: {{result.4.1|floatformat:2}}</p>
     <hr>
-    <h2>Other Dementia</h2>
-    <p>Mean: {{result.5.mean}}</p>
-    <p>Standard Deviation: {{result.5.std}}</p>
+    <h2><b>Other Dementia</b></h2>
+    <p>Mean: {{result.5.0|floatformat:2}}</p>
+    <p>Standard Deviation: {{result.5.1|floatformat:2}}</p>
     <hr>
 </body>

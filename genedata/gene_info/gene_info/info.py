@@ -1,13 +1,23 @@
 import csv, json, decimal, os
-import boto3
+import psycopg2
 import xml.etree.ElementTree as ET
 ET.register_namespace('', "http://uniprot.org/uniprot")
+
+import os, sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', '..', 'config')))
+try:
+    from config import config
+except:
+    import config
 
 def connect():
   conn = None
   cur = None
   try:
-    conn = psycopg2.connect(host="localhost", database="gene_info", user="bhernandev", password="password123")
+    conn = psycopg2.connect(host=config.get_setting('postgresql', 'host'),
+                            database=config.get_setting('postgresql','db_name'),
+                            user=config.get_setting('postgresql', 'user'),
+                            password=config.get_setting('postgresql', 'pass'))
     cur = conn.cursor()
   except(Exception, psycopg2.DatabaseError) as error:
     print error
@@ -47,7 +57,7 @@ def insert_data():
   #genesymbol
   csv_reader = None
   gene_rows = []
-  with open("../../../data/entrez_ids_genesymbol.csv") as genesymbol_file:
+  with open("../../../data/{}".format(config.get_setting('postgresql', 'genesymbol_file_name'))) as genesymbol_file:
     genesymbol_file.readline()
     csv_reader = csv.reader(genesymbol_file)
     for row in csv_reader:
@@ -60,7 +70,7 @@ def insert_data():
 
   #uniprot
   uniprot_rows = []
-  with open("../../../data/entrez_ids_uniprot.txt") as uniprot_file:
+  with open("../../../data/{}".format(config.get_setting('postgresql', 'entrez_uniprot_file_name'))) as uniprot_file:
     uniprot_file.readline()
     line = uniprot_file.readline()
     while line:
@@ -77,13 +87,15 @@ def insert_data():
   insertion_sql = "INSERT INTO uniprot_xml(uniprot_id, gene_xml) VALUES(%s, %s)"
   xml_rows = []
   count = 0
-  tree = ET.iterparse('../../../data/uniprot-human.xml')
+  total = 0
+  tree = ET.iterparse('../../../{}'.format(config.get_setting('postgresql','uniprot_human_file_name')))
   tree = iter(tree)
   for event, elem in tree:
     if count == 1000:
+      total = total + count
       cur.executemany(insertion_sql, xml_rows)
       conn.commit()
-      print "uniprot_xml committed partially"
+      print "uniprot_xml committed {}".format(total)
       count = 0
       xml_rows = []
     if elem.tag == '{http://uniprot.org/uniprot}entry':
@@ -100,6 +112,7 @@ def insert_data():
   cur.executemany(insertion_sql, xml_rows)
   conn.commit()
   print "uniprot_xml committed"
+
 
 def query_gene(entrez_id):
   query_results = []
