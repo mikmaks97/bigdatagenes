@@ -11,5 +11,7 @@ Databases:
 - PostgreSQL
 - Dynamo
 
+[View on Github](https://github.com/mikmaks97/bigdatagenes)
+
 [Installation instructions](https://github.com/mikmaks97/bigdatagenes/blob/master/docs/installation.md)<br>
 [Dev tips](https://github.com/mikmaks97/bigdatagenes/blob/master/docs/dev.md)
