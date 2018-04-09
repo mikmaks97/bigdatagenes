@@ -3,6 +3,10 @@ import boto3
 from botocore.exceptions import ClientError
 
 
+class ConnectionError(Exception):
+    pass
+
+
 # Helper class to convert a DynamoDB item to JSON.
 class DecimalEncoder(json.JSONEncoder):
     def default(self, o):
@@ -40,7 +44,10 @@ def connect():
                 'WriteCapacityUnits': 10
             }
         )
-    except:
+    except Exception as e:
+        if e[0] == 'Connection aborted':
+            raise ConnectionError('Connection refused')
+        table = dynamodb.Table('Genes')
         table = dynamodb.Table('Patients')
 
     return table

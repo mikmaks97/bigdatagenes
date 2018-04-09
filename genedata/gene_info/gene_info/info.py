@@ -1,5 +1,5 @@
-import psycopg2
-import csv
+import csv, json, decimal, os
+import boto3
 import xml.etree.ElementTree as ET
 ET.register_namespace('', "http://uniprot.org/uniprot")
 
@@ -10,7 +10,7 @@ def connect():
     conn = psycopg2.connect(host="localhost", database="gene_info", user="bhernandev", password="password123")
     cur = conn.cursor()
   except(Exception, psycopg2.DatabaseError) as error:
-    print error 
+    print error
 
   return cur, conn
 
@@ -39,7 +39,7 @@ def create_tables():
       """)
     conn.commit()
   except (Exception, psycopg2.DatabaseError) as error:
-    print error 
+    print error
 
 def insert_data():
   cur, conn = connect()
@@ -56,7 +56,7 @@ def insert_data():
   insertion_sql = "INSERT INTO genesymbol(entrez_id, gene_symbol, gene_name) VALUES(%s, %s, %s)"
   cur.executemany(insertion_sql, gene_rows)
   conn.commit()
-  print "genesymbol committed" 
+  print "genesymbol committed"
 
   #uniprot
   uniprot_rows = []
@@ -71,7 +71,7 @@ def insert_data():
   insertion_sql = "INSERT INTO uniprot(entrez_id, uniprot_id) VALUES(%s, %s)"
   cur.executemany(insertion_sql, uniprot_rows)
   conn.commit()
-  print "uniprot committed" 
+  print "uniprot committed"
 
   #uniprot_xml
   insertion_sql = "INSERT INTO uniprot_xml(uniprot_id, gene_xml) VALUES(%s, %s)"
@@ -83,7 +83,7 @@ def insert_data():
     if count == 1000:
       cur.executemany(insertion_sql, xml_rows)
       conn.commit()
-      print "uniprot_xml committed partially" 
+      print "uniprot_xml committed partially"
       count = 0
       xml_rows = []
     if elem.tag == '{http://uniprot.org/uniprot}entry':
@@ -99,7 +99,7 @@ def insert_data():
 
   cur.executemany(insertion_sql, xml_rows)
   conn.commit()
-  print "uniprot_xml committed" 
+  print "uniprot_xml committed"
 
 def query_gene(entrez_id):
   query_results = []
