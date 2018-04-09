@@ -1,0 +1,19 @@
+{% load static %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'web_db/pure-min.css' %}">
+</head>
+<body>
+    <legend><h1>Gene {{ query }}</h1></legend>
+    <hr>
+    <h2>Gene information</h2>
+    <p>Gene Symbol: {{symbol}}</p>
+    <p>Gene Name: {{name}}</p>
+    <hr>
+    <h2>Protein information</h2>
+    {% for row in result %}
+        <p>Uniprot ID: {{row.uniprot_id}}</p>
+        <p>Uniprot Entry in XML: <br> {{row.uniprot_xml}}</p>
+        <hr>
+    {% endfor %}
+</body>

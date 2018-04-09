@@ -1,0 +1,36 @@
+{% load static %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'web_db/pure-min.css' %}">
+</head>
+<body>
+    <form class="pure-form" action="/" method="post">{% csrf_token %}
+        <fieldset>
+          <legend>Gene Interaction</legend>
+          <input id="gene" type="text" name="gene" placeholder="Gene ID">
+          <input id="order" type="text" name="order" placeholder="Order">
+          <button type="submit" class="pure-button pure-button-primary" name="gene-interaction" value="OK">Submit</button>
+        </fieldset>
+    </form>
+    <form class="pure-form" action="/" method="post">{% csrf_token %}
+        <fieldset>
+            <legend>Gene Statistics</legend>
+            <input id="gene" type="text" name="gene" placeholder="Gene ID">
+            <button type="submit" class="pure-button pure-button-primary" name="gene-statistics" value="OK">Submit</button>
+        </fieldset>
+    </form>
+    <form class="pure-form" action="/" method="post">{% csrf_token %}
+        <fieldset>
+            <legend>Gene Information</legend>
+            <input id="gene" type="text" name="gene" placeholder="Gene ID">
+            <button type="submit" class="pure-button pure-button-primary" name="gene-information" value="OK">Submit</button>
+        </fieldset>
+    </form>
+    <form class="pure-form" action="/" method="post">{% csrf_token %}
+        <fieldset>
+            <legend>Patient Information</legend>
+            <input id="gene" type="text" name="patient" placeholder="Patient ID">
+            <button type="submit" class="pure-button pure-button-primary" name="patient-information" value="OK">Submit</button>
+        </fieldset>
+    </form>
+</body>

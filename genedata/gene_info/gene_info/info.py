@@ -16,9 +16,6 @@ def connect():
 
 
 def create_tables():
-  #create the tables with the correct columns for the genes
-  #one table for the entrez(primary), uniprot id, name
-  #one table for the uniprot id + xml data (primary key is the uniprot_id and other column is just an XML dump of that specific entry)
   cur, conn = connect()
   try:
     cur.execute("""
@@ -50,7 +47,7 @@ def insert_data():
   #genesymbol
   csv_reader = None
   gene_rows = []
-  with open("entrez_ids_genesymbol.csv") as genesymbol_file:
+  with open("../../../data/entrez_ids_genesymbol.csv") as genesymbol_file:
     genesymbol_file.readline()
     csv_reader = csv.reader(genesymbol_file)
     for row in csv_reader:
@@ -63,7 +60,7 @@ def insert_data():
 
   #uniprot
   uniprot_rows = []
-  with open("entrez_ids_uniprot.txt") as uniprot_file:
+  with open("../../../data/entrez_ids_uniprot.txt") as uniprot_file:
     uniprot_file.readline()
     line = uniprot_file.readline()
     while line:
@@ -80,7 +77,7 @@ def insert_data():
   insertion_sql = "INSERT INTO uniprot_xml(uniprot_id, gene_xml) VALUES(%s, %s)"
   xml_rows = []
   count = 0
-  tree = ET.iterparse('uniprot-human.xml')
+  tree = ET.iterparse('../../../data/uniprot-human.xml')
   tree = iter(tree)
   for event, elem in tree:
     if count == 1000:
@@ -110,7 +107,13 @@ def query_gene(entrez_id):
   cur.execute("SELECT genesymbol.entrez_id, genesymbol.gene_symbol, genesymbol.gene_name, uniprot.uniprot_id, uniprot_xml.gene_xml FROM genesymbol INNER JOIN uniprot ON genesymbol.entrez_id = uniprot.entrez_id INNER JOIN uniprot_xml ON uniprot.uniprot_id = uniprot_xml.uniprot_id WHERE genesymbol.entrez_id = " + str(entrez_id))
   rows = cur.fetchall()
   for row in rows:
-    query_results.append(row)
+    query_results.append({
+        "entrez_id": row[0],
+        "gene_symbol": row[1],
+        "gene_name": row[2],
+        "uniprot_id": row[3],
+        "uniprot_xml": row[4],
+        })
   return query_results
 
 def drop_tables():

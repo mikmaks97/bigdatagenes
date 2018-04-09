@@ -1,0 +1,13 @@
+{% load static %}
+{% load extras %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'web_db/pure-min.css' %}">
+</head>
+<body>
+    <legend><h1>Gene interactions for gene {{ query }}</h1></legend>
+    <hr>
+    {% for interaction in result %}
+        <p>{{interaction|get_key:"n_order_gene.id"}}</p>
+    {% endfor %}
+</body>

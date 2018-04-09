@@ -1,0 +1,13 @@
+{% load static %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'web_db/pure-min.css' %}">
+</head>
+<body>
+    <legend><h1>Patient {{ id }}</h1></legend>
+    <hr>
+    <p>Gender: {{gender}}</p>
+    <p>Age: {{age}}</p>
+    <p>Education: {{education}}</p>
+    <p>ID: {{id}}</p>
+</body>
