@@ -1,4 +1,3 @@
 #!/bin/bash
 
-source proj_venv/bin/activate
-python genedata/manage.py runserver
+python2 genedata/manage.py runserver
