@@ -10,5 +10,5 @@ Dependencies: Python 2.7, pip, virtualenv<br>
 5. Change default settings for databases in *config.ini*
 6. `source proj_venv/bin/activate` in repo root
 7. `chmod +x run_web.sh` and `./run_web.sh` and go to http://localhost:8000 for web interface
-8. `make cli` and go to *genedata/cli* for CLIs
+8. `make cli` and go to *cli* for CLIs
 
