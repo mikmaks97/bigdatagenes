@@ -1,6 +1,9 @@
 # Installation instructions<br>
 
-Dependencies: Python 2.7, pip, virtualenv<br>
+Dependencies: Python 2.7, pip(not v.9.0.1), virtualenv (with appropriate pip version)<br>
+Python 2.7.13 and virtualenv 15.2.0 with pip 9.0.3 worked for me.<br>
+If `pip -r requirements.txt` fails on `cassandra-driver` you can try `pip install cassandra-driver --install-option="--no-cython"`<br>
+If it fails on `pandas`, run `pip install pandas` manually.<br>
 
 1. `git clone https://github.com/mikmaks97/bigdatagenes`
 2. `make init` in project root (make sure path to project does not contain spaces!)
